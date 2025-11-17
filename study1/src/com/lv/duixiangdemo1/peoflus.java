@@ -11,6 +11,6 @@ public class peoflus {
         float[] brr = {1, 241, 5, 16, 72, 7};
         float pj = ArrayUtil.getAerage(brr);
         System.out.println(text);
-        System.out.println(pj);
+
     }
 }
