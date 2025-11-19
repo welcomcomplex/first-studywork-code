@@ -1,7 +1,7 @@
 package com.lv.duixiangdemo1;
 
 public class ArrayUtil {
-
+private ArrayUtil(){}
     public  static  String printArr(int[] arr){
         String tempst = "[";
         for (int i = 0; i < arr.length-1; i++) {
