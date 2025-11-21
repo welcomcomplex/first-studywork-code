@@ -50,6 +50,11 @@ private int age;
     public void keeppet(animal al,String something){
         System.out.println("年龄为"+age +"岁"+name+""+al.getColour()+""+al.getAge()+"");
         System.out.println(al.getColour()+""+al.getAge()+""+al.eat(something)+"");
+        if(al instanceof dog dg){
+            dg.lookhome();
+        } else if (al instanceof cat ct ) {
+             ct.catmouse();
+        }
     }
 
 
