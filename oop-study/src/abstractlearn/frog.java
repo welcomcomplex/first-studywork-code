@@ -9,6 +9,7 @@ public class frog extends Animal{
         super(name,age);
     }
 
+    @Override
     public void eat(){
         System.out.println("frog eat chong");
     }

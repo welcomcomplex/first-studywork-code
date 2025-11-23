@@ -10,6 +10,7 @@ public class dog extends Animal{
     }
 
 
+    @Override
     public void eat(){
         System.out.println("dog eat bood");
     }

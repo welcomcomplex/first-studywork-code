@@ -9,6 +9,7 @@ public class sheep extends Animal{
         super(name,age);
     }
 
+    @Override
     public void eat(){
         System.out.println("sheep eat caw");
     }
