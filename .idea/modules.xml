@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/interfacestudy/interfacestudy.iml" filepath="$PROJECT_DIR$/interfacestudy/interfacestudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/interfacestudy/instudy/instudy.iml" filepath="$PROJECT_DIR$/interfacestudy/instudy/instudy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/interfacestudy/interface/interface.iml" filepath="$PROJECT_DIR$/interfacestudy/interface/interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/oop-study/oop-study.iml" filepath="$PROJECT_DIR$/oop-study/oop-study.iml" />
       <module fileurl="file://$PROJECT_DIR$/study1/study1.iml" filepath="$PROJECT_DIR$/study1/study1.iml" />
       <module fileurl="file://$PROJECT_DIR$/untitled.iml" filepath="$PROJECT_DIR$/untitled.iml" />
