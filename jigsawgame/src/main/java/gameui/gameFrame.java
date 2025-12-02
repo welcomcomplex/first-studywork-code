@@ -7,70 +7,78 @@ import java.util.Random;
 
 public class gameFrame extends JFrame implements KeyListener {
     public gameFrame(){
-        inintFrame();
+        initFrame();
 
-        smallframe();
+        initMenuBar();
 
         initImage();
         this.setVisible(true);
     }
+    
     int x = 0;
     int y = 0;
+    
     private void initImage() {
         this.getContentPane().removeAll();
-        ImageIcon idback = new ImageIcon("D:\\code\\idea Programs\\untitled\\jigsawgame\\src\\main\\java\\image\\background.png");
-        JLabel jback = new JLabel(idback);
-        jback.setBounds(40,40,508,560);
+        
+        // Add step count label
+        JLabel scount = new JLabel("Steps: " + step);
+        scount.setBounds(580, 40, 100, 20);
+        this.getContentPane().add(scount);
 
-
+        // Add puzzle pieces
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-
-
-
-                ImageIcon all1 = new ImageIcon("D:\\code\\idea Programs\\untitled\\jigsawgame\\src\\main\\java\\image\\animal\\animal3\\"+brr[i][j]+".jpg");
-                JLabel jl1 = new JLabel(all1);
-                jl1.setBounds(j * 100+10, i * 100+20, 100, 100);
-                this.getContentPane().add(jl1);
-
+                ImageIcon icon = new ImageIcon("D:\\code\\idea Programs\\untitled\\jigsawgame\\src\\main\\java\\image\\animal\\animal3\\" + brr[i][j] + ".jpg");
+                JLabel label = new JLabel(icon);
+                label.setBounds(j * 100 + 40, i * 100 + 40, 100, 100);
+                this.getContentPane().add(label);
             }
         }
-        this.getContentPane().add(jback);
+        
+        // Add background
+        ImageIcon background = new ImageIcon("D:\\code\\idea Programs\\untitled\\jigsawgame\\src\\main\\java\\image\\background.png");
+        JLabel bgLabel = new JLabel(background);
+        bgLabel.setBounds(40, 40, 400, 400);
+        this.getContentPane().add(bgLabel);
+        
         this.getContentPane().repaint();
     }
+    
+    int step = 0;
+    
+    private void initMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu functionMenu = new JMenu("Function");
+        JMenu aboutMenu = new JMenu("About Us");
 
-    private static void smallframe() {
-        JMenuBar jMenuBar = new JMenuBar();
-        JMenu fnjmenu= new JMenu("功能");
-        JMenu abjmenu= new JMenu("关于我们");
+        JMenuItem restartItem = new JMenuItem("Restart Game");
+        JMenuItem reloginItem = new JMenuItem("Relogin");
+        JMenuItem closeItem = new JMenuItem("Close Game");
+        JMenuItem contactItem = new JMenuItem("Contact Us");
 
-        JMenuItem reit = new JMenuItem("重新游戏");
-        JMenuItem relog = new JMenuItem("重新登录");
-        JMenuItem closegame = new JMenuItem("关闭游戏");
-        JMenuItem accitem = new JMenuItem("联系我们");
+        functionMenu.add(restartItem);
+        functionMenu.add(reloginItem);
+        functionMenu.add(closeItem);
+        aboutMenu.add(contactItem);
 
-        fnjmenu.add(reit);
-        fnjmenu.add(relog);
-        fnjmenu.add(closegame);
-        abjmenu.add(accitem);
+        menuBar.add(functionMenu);
+        menuBar.add(aboutMenu);
+        this.setJMenuBar(menuBar);
     }
+    
     int[][] brr = new int[4][4];
-    private void inintFrame() {
-        this.setSize(700,700);
-
-        this.setTitle("拼图游戏");
-        this.setAlwaysOnTop(true);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(3);
+    
+    private void shuffleArray() {
         int[] temp = new int[16];
-        int s = 0;
         for (int i = 0; i < temp.length; i++) {
             temp[i] = i + 1;
         }
+        
         Random r = new Random();
         for (int i = 0; i < temp.length; i++) {
             int randomIndex = r.nextInt(temp.length);
-            s = temp[i];
+            int s = temp[i];
             temp[i] = temp[randomIndex];
             temp[randomIndex] = s;
         }
@@ -83,11 +91,21 @@ public class gameFrame extends JFrame implements KeyListener {
                     y = j;
                 }
             }
-
         }
-        //取消居中放置
+    }
+    
+    private void initFrame() {
+        this.setSize(700, 700);
+        this.setTitle("Puzzle Game");
+        this.setAlwaysOnTop(true);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(3);
+        
+        shuffleArray();
+        
+        // Cancel center layout
         this.setLayout(null);
-        //键盘监听
+        // Keyboard listener
         this.addKeyListener(this);
     }
 
@@ -98,25 +116,85 @@ public class gameFrame extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        int code = e.getKeyCode();
+        if(code == 65){ // A key
+            this.getContentPane().removeAll();
+            
+            // Show complete image
+            ImageIcon completeImage = new ImageIcon("D:\\code\\idea Programs\\untitled\\jigsawgame\\src\\main\\java\\image\\animal\\animal3\\all.jpg");
+            JLabel completeLabel = new JLabel(completeImage);
+            completeLabel.setBounds(40, 40, 400, 400);
+            this.getContentPane().add(completeLabel);
+            
+            // Add background
+            ImageIcon background = new ImageIcon("D:\\code\\idea Programs\\untitled\\jigsawgame\\src\\main\\java\\image\\background.png");
+            JLabel bgLabel = new JLabel(background);
+            bgLabel.setBounds(40, 40, 400, 400);
+            this.getContentPane().add(bgLabel);
+            
+            this.getContentPane().repaint();
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         int code = e.getKeyCode();
-        if(code == 38){
-            upmove();
-            System.out.println(code);
+        switch(code) {
+            case 38: // Up arrow
+                moveUp();
+                break;
+            case 40: // Down arrow
+                moveDown();
+                break;
+            case 37: // Left arrow
+                moveLeft();
+                break;
+            case 39: // Right arrow
+                moveRight();
+                break;
+            case 65: // A key
+                initImage();
+                break;
         }
     }
 
-    private void upmove() {
+    private void moveUp() {
         if(x > 0) {
             brr[x][y] = brr[x-1][y];
             brr[x-1][y] = 16;
             x -= 1;
+            step++;
             initImage();
         }
-        System.out.println("up");
+    }
+    
+    private void moveDown() {
+        if(x < 3) {
+            brr[x][y] = brr[x+1][y];
+            brr[x+1][y] = 16;
+            x += 1;
+            step++;
+            initImage();
+        }
+    }
+    
+    private void moveLeft() {
+        if(y > 0) {
+            brr[x][y] = brr[x][y-1];
+            brr[x][y-1] = 16;
+            y -= 1;
+            step++;
+            initImage();
+        }
+    }
+    
+    private void moveRight() {
+        if(y < 3) {
+            brr[x][y] = brr[x][y+1];
+            brr[x][y+1] = 16;
+            y += 1;
+            step++;
+            initImage();
+        }
     }
 }

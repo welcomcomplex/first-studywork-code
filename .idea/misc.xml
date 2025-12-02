@@ -6,6 +6,8 @@
       <list>
         <option value="$PROJECT_DIR$/internewmd/pom.xml" />
         <option value="$PROJECT_DIR$/jigsawgame/pom.xml" />
+        <option value="$PROJECT_DIR$/mathlearn/pom.xml" />
+        <option value="$PROJECT_DIR$/datetime/pom.xml" />
       </list>
     </option>
   </component>

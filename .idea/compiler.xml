@@ -8,6 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="internewmd" />
         <module name="jigsawgame" />
+        <module name="datetime" />
+        <module name="mathlearn" />
       </profile>
     </annotationProcessing>
   </component>
