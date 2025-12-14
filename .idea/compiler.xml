@@ -9,9 +9,13 @@
         <module name="internewmd" />
         <module name="jigsawgame" />
         <module name="datetime" />
+        <module name="mappra" />
+        <module name="doudizhu_Project" />
+        <module name="steam" />
         <module name="arithpra" />
         <module name="collectionpra" />
         <module name="mathlearn" />
+        <module name="setpra" />
       </profile>
     </annotationProcessing>
   </component>
